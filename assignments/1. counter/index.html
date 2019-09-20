@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Basic Counter App</title>
-  </head>
-  <body></body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <style>
+      .container {
+      padding : 30vh;
+      text-align: center; 
+      background-color: blanchedalmond; 
+      height: 100vh;
+    
+    }
+      button {
+      padding: 10px 20px;
+      font-size: 20px;
+      background-color: goldenrod;
+      margin-left: 10px;
+      border-radius: 20px;
+    }
+    </style>
+    <div class="container">
+        <h1>
+            1
+        </h1>
+        <Button class="increment">Increment</Button>
+        <Button class="decrement">Decrement</Button>
+        <Button class="reset">Reset</Button>
+    </div>
+    <script>
+      document.querySelector('.increment').addEventListener('click',function(){
+      document.querySelector('h1').innerText = +document.querySelector('h1').innerText +1;
+      })
+      document.querySelector('.decrement').addEventListener('click',function(){
+      document.querySelector('h1').innerText = +document.querySelector('h1').innerText -1;
+      })
+      document.querySelector('.reset').addEventListener('click',function(){
+      document.querySelector('h1').innerText = 0;
+      })
+    </script>
+
+</body>
 </html>
