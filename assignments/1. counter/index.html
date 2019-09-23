@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <style>
@@ -24,24 +23,35 @@
       border-radius: 20px;
     }
     </style>
-    <div class="container">
-        <h1>
-            1
-        </h1>
+    <div class="data">
         <Button class="increment">Increment</Button>
         <Button class="decrement">Decrement</Button>
         <Button class="reset">Reset</Button>
     </div>
     <script>
-      document.querySelector('.increment').addEventListener('click',function(){
-      document.querySelector('h1').innerText = +document.querySelector('h1').innerText +1;
-      })
-      document.querySelector('.decrement').addEventListener('click',function(){
-      document.querySelector('h1').innerText = +document.querySelector('h1').innerText -1;
-      })
-      document.querySelector('.reset').addEventListener('click',function(){
-      document.querySelector('h1').innerText = 0;
-      })
+      function main(){
+        let count  = 0;
+        let increment = document.querySelector(".increment");
+        let decrement = document.querySelector(".decrement");
+        let reset = document.querySelector(".reset");
+        let finalData = document.querySelector(".data");
+        function finalView(data){
+          return finalData.innerHTML= `<h1>${data}</h1>`;
+        }
+        increment.addEventListener('click', ()=>{
+          count = count + 1;
+          finalView(count);
+        })
+        decrement.addEventListener('click', ()=>{
+          count = count - 1;
+          finalView(count);
+        })
+        decrement.addEventListener('click', ()=>{
+          count = 0;
+          finalView(count);
+        })
+      }
+      main()
     </script>
 
 </body>
