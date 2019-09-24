@@ -202,14 +202,19 @@ body {
     border:1px solid #E9D6D8;
     border-radius: 4px;
 }
+.active:focus {
+    border:1px solid #E9D6D8;
+    border-radius: 4px;
+}
 .completed:hover {
     border:1px solid #E9D6D8;
     border-radius: 4px;
 }
-.active:hover {
+.completed:focus {
     border:1px solid #E9D6D8;
     border-radius: 4px;
 }
+
 h3 {
     display: inline-block;
 }

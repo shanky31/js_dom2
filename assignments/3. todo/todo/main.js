@@ -53,10 +53,10 @@ function handleSubmit (event){
     function deleteSubmit (event) {
         console.log('inside delete',event)
         var id = event.target.dataset.id
-        // if(event.target.classList.contains("del")){
+        if(event.target.classList.contains("del")){
             console.log('inside delete if')
         todoList.splice(id,1);
-        // }
+         }
         view(todoList);
     }
     
@@ -97,7 +97,6 @@ function handleSubmit (event){
         return isActive.length <= 1 ? item.innerText = "item left" : item.innerText = "items left";
         }
     function completedAll (){
-
     }
 
 
