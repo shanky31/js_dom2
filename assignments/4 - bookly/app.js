@@ -1,64 +1,46 @@
-var input = document.querySelector(".input");
-var add = document.querySelector("button");
-add.className = "add";
-var ul = document.querySelector("ul");
-var searchBar = document.querySelector('.outline');
-hide = document.querySelector('#hide');
-var bookList = [];
-function render (arrList){
-    ul.innerHTML = "";
-    
-    arrList.forEach(book => {
-        let li = document.createElement('li');
-        li.textContent = book;
-        ul.appendChild(li);
-    });
+var bookArr = JSON.parse(localStorage.getItem('book-arr')) || [];
+var addBtn = document.querySelector('.addButton')
+addBtn.addEventListener('click', addBooks)
+document.querySelector('#hide').addEventListener('click', visibilityNone)
+var bookInput = document.querySelector('.bookInput')
+var searchInput = document.querySelector('.searchInput')
+window.addEventListener('keyup', (e)=>searchBooks(e))
+
+function addBooks (event){
+    event.preventDefault()
+    bookArr.push(bookInput.value)
+    console.log(bookArr)
+    bookInput.value= '';
+    display(bookArr)
 }
 
-function search (event){
-    let query = event.target.value.trim();
-    let searchResults = bookList.filter(book => {
-        return book.startsWith(query);
-    });
-    console.log(searchResults);
-    render(searchResults);
-}
-
- function enterBooks (event){
-     if (event.keyCode === 13 && event.target.value.trim() != "" ) {
-         console.log(event.target.value, "inside...")
-         book = event.target.value ;
-         bookList.push(book);
-            isDone = hide.checked;
-         if (isDone == true) {
-            ul.style.display = "none";
-         } else {
-            ul.style.display = "block";
-         }
-         event.target.value = "";
-         console.log(bookList);
-        
-     }
- }
- function addBooks (event) {
-    if (event.target.previousElementSibling.value.trim() != "") {
-        book = event.target.previousElementSibling.value;
-        bookList.push(book);
-       
-        event.target.previousElementSibling.value = "";
-        console.log(bookList);
+function searchBooks (e) {
+    e.preventDefault()
+    if( e.keyCode == 13) {
+        var bookName = searchInput.value
+        var filterBook = bookArr.filter(book => book==bookName) 
+        display(filterBook)
     }
 }
-function check (event) {
-    
- if (event.target.checked == true){
-    ul.style.display = "none";
-  } else {
-    ul.style.display = "block";
-}
+
+function display(arr) {
+    document.querySelector('#addBook').innerHTML = ''
+    arr.forEach(book => {
+       var li = document.createElement('li')
+       li.innerText=book
+       document.querySelector('#addBook').appendChild(li) 
+    })
+    localStorage.setItem("book-arr",JSON.stringify(bookArr));
 }
 
-input.addEventListener('keydown',enterBooks);
-add.addEventListener('click',addBooks);
-searchBar.addEventListener('keydown',search);
-hide.addEventListener('click',check);
+function visibilityNone () {
+    var checkBox = document.querySelector('#hide')
+    if(checkBox.checked){
+        document.querySelector('ul').innerHTML = "";  
+    }else{
+        display(bookArr)      
+    }
+}
+  display(bookArr);
+
+

@@ -10,7 +10,7 @@ let allTodo = document.querySelector('.all');
 let allTodo2 = document.querySelector('.all1');
 let selectAllTodo = document.querySelector('i');
 let footer1 = document.querySelector('footer1');
-let todoList = [];
+let todoList = JSON.parse(localStorage.getItem('todo-list'))||[];
 
 function view (arrayToDisplay) {
     ul.innerHTML = '';
@@ -19,7 +19,7 @@ function view (arrayToDisplay) {
         let li = document.createElement("li");
         li.className = "li_list";
         const check = document.createElement("input");
-        check.type = "checkbox";
+        check.type = "checkboxlocalStorage.setItem('todo-list',JSON.stringify(todoList)); ";
         check.setAttribute("data-id", index);
         check.className = "check";
         check.checked = item.isDone;
@@ -42,10 +42,11 @@ function view (arrayToDisplay) {
         li.appendChild(btn);
         ul.appendChild(li);
     });
-    
+    localStorage.setItem('todo-list',JSON.stringify(todoList)); 
     item_count.innerText = activeLength();
     itemsLeft(); 
-    showClearCompleted (); 
+    showClearCompleted ();
+    
 }
 
 function handleSubmit (event){
@@ -65,10 +66,10 @@ function handleSubmit (event){
     function deleteSubmit (event) {
         console.log('inside delete',event)
         var index = event.target.dataset.id
-        // if(event.target.classList.contains("del")){
+        if(event.target.classList.contains("del")){
             console.log('inside delete if')
         todoList.splice(index,1);
-        // }
+         }
         view(todoList);
     }
     
@@ -148,10 +149,9 @@ function handleSubmit (event){
                 return item.isDone = true;
             })
         }
-        
-        console.log('hola');
-        view(todoList);
     }
+    view(todoList);
+
 
     document.addEventListener('keydown', handleSubmit);
     completedTodo.addEventListener('click',completed);
