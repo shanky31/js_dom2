@@ -5,6 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Basic Counter App</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   </head>
-  <body></body>
+  <body>
+    <style>
+        body {
+            background-image: url(https://images.pexels.com/photos/531321/pexels-photo-531321.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+            font-family: 'Roboto', sans-serif;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .wrapper {
+            max-width: 60%;
+            margin: 0 auto;
+            text-align: center;
+            margin-top:200px;
+        }
+        .data {
+            font-size: 64px;
+            height:100px;
+            width:100px;
+            margin:0 auto;  
+            color:teal;  
+        }
+        button {
+            margin-top: 40px;
+            padding:10px 20px;
+            width:100px;
+            border-radius: 50%;
+            font-size: 12px;
+            background:goldenrod;
+            color:#fff;
+        }
+        .logo {
+            font-size: 50px;
+            color:rgb(247, 95, 95);
+          
+        }
+    
+    </style>
+    <section class="wrapper">
+        <div class="logo">Counter</div>
+        <div class="data"></div>
+        <div class="counter">
+        <button class="increment">Increment</button>
+        <button class="decrement">Decrement</button>
+        <button class="reset">Reset</button>
+    </div>
+    </section>
+  </body>
+  <script>
+    function main(){
+      let count = 0;
+      let increment = document.querySelector(".increment");
+      let decrement = document.querySelector(".decrement");
+      let reset = document.querySelector(".reset");
+      let finalData = document.querySelector(".data");
+      function finalView(data){
+      return finalData.innerHTML =`<h1>${data}<h1>`;
+      }
+      increment.addEventListener("click", () =>
+      {
+      count = count+1;
+      finalView(count);
+      })
+      decrement.addEventListener("click", () => 
+      {
+          count = count-1;
+          finalView(count);
+      })
+      reset.addEventListener("click" , () => 
+      {
+          count = 0;
+          finalView(count);
+      })
+      }
+      main();
+  </script>
 </html>

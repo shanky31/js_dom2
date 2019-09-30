@@ -5,6 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Forms</title>
+    <link href="https://fonts.googleapis.com/css?family=Big+Shoulders+Display&display=swap" rel="stylesheet">
   </head>
-  <body></body>
+  <body>
+    <style>
+        body {
+          font-family: 'Big Shoulders Display', cursive;
+        }
+        .wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          flex-direction: column;
+        }
+        input {
+          margin-bottom: 8px;
+        }
+
+    </style>
+
+    <form class="wrapper">
+      <input type="text" placeholder="Enter your Name">
+      <input type="text" placeholder="Email">
+      <input type="text" placeholder="Password">
+      <button class="btn">sign up</button>
+    </form>
+
+    <script>
+      let input = document.querySelectorAll("input")[0];
+      function validInput (event){
+        if (event.target.value == ""){
+          alert("Name Can't be empty");
+        }
+      }
+      input.addEventListener("click",validInput);
+      let submit = document.querySelector(".btn")
+      function submitValue (event){
+        if (event.target.parentElement.childNodes[0].value == ""){
+          console.log(event.target.parentElement.childNodes[0])
+          alert("invalid input");
+        }
+      }
+      submit.addEventListener("click",submitValue);
+    </script>
+  </body>
 </html>
